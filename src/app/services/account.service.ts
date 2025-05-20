@@ -3,12 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IRegisteruser } from '../models/iregisteruser';
 import { ILoginuser } from '../models/iloginuser';
+import { API_URL } from './URLservice';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  baseurl = "http://localhost:17102/api/Account"
+  baseurl = `${API_URL}Account`;
   
   constructor(private http : HttpClient) { }
 

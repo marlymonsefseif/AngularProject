@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { API_URL } from './URLservice';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  baseurl = "http://localhost:17102/api/User";
+  baseurl = `${API_URL}User`;
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,16 @@ export class UserService {
       'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get(`${this.baseurl}/${id}`, { headers });
+    return this.http.get<any>(`${this.baseurl}/${id}`, { headers });
+  }
+
+  editUser(id: any, user: any) : Observable<any> {
+    const token = localStorage.getItem("UserAuthToken");
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.put(`${this.baseurl}/${id}`, user, { headers });
   }
 }
