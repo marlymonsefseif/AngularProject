@@ -37,7 +37,7 @@ export class LoginformComponent {
       this.accountService.loginUser(this.userData.value).subscribe({
         next: (response) => {
           alert('Login success');
-          if (this.userData.value.email == "Admin@gmail.com") {
+          if (this.userData.value.email?.toLocaleLowerCase() == "admin@gmail.com") {
             localStorage.setItem('AdminAuthToken', response.token);
             localStorage.setItem('AdminId',response.id);
           }
