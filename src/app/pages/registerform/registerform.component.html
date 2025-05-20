@@ -1,0 +1,76 @@
+<div>
+    <form class="form" [formGroup]="userData" (submit)="registerOperation()">
+        <p class="title">SIGN UP </p>
+        <p class="message">Signup now and get full access to our app. </p>
+        <label>
+            <input class="input" type="text" name="fname" formControlName="firstName" placeholder="" required="">
+            <span>Firstname</span>
+        </label>
+        @if (getFName.touched) {
+        @if (getFName.hasError('required')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            First Name Is Required.
+        </div>
+        } @if (getFName.hasError('minlength')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            First Name length must be greater than 3.
+        </div>
+        } }
+
+        <label>
+            <input class="input" type="text" name="lname" formControlName="lastName" placeholder="" required="">
+            <span>Lastname</span>
+        </label>
+        @if (getLName.touched) {
+        @if (getLName.hasError('required')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Last Name Is Required.
+        </div>
+        } @if (getLName.hasError('minlength')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Last Name length must be greater than 3.
+        </div>
+        } }
+
+        <label>
+            <input class="input" type="email" name="email" formControlName="email" placeholder="" required="">
+            <span>Email</span>
+        </label>
+        @if (getEmail.touched) {
+        @if (getEmail.hasError('required')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Email Is Required.
+        </div>
+        } @if (getEmail.hasError('email')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Please enter a valid email address.
+        </div>
+        } }
+
+        <label>
+            <input class="input" type="password" name="password" formControlName="password" placeholder="" required="">
+            <span>Password</span>
+        </label>
+        @if (getPass.touched) {
+        @if (getPass.hasError('required')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Password Is Required.
+        </div>
+        } }
+
+        <label>
+            <input class="input" type="password" name="cpassword" formControlName="confirmPassword" placeholder=""
+                required="">
+            <span>Confirm password</span>
+        </label>
+        @if (getCPass.touched) {
+        @if (getCPass.hasError('required')) {
+        <div id="passwordHelpBlock" class="form-text text-danger">
+            Confirm Password Is Required.
+        </div>
+        } }
+
+        <button class="submit" type="submit">Submit</button>
+        <p class="signin">Already have an acount? <a [routerLink]="['/login']">Sign In</a> </p>
+    </form>
+</div>

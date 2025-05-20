@@ -1,0 +1,25 @@
+.edit {
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    transform: .3s ease;
+    background-color: #00bfff;
+}
+
+.edit:hover {
+    background-color: #00bfff96;
+}
+
+.icons a {
+    font-size: xx-large;
+    padding: 8px;
+    color: black;
+}
+
+.icons a:hover {
+    color: #00bfff;
+}
