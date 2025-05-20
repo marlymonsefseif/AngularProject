@@ -1,0 +1,26 @@
+body {
+  background-color: #F8F9FA; /* رمادي فاتح مريح */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #2A3B47; 
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.custom-carousel img {
+  max-height: 500px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.custom-carousel img:hover {
+  transform: scale(1.02);
+}
+
+h1.display-4 {
+  color: #2A3B47;
+}
+

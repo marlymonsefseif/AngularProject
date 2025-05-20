@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.main-content {
+  min-height: calc(100vh - 160px); /* عدّلي الرقم حسب طول الهيدر والفوتر */
+  padding: 20px;
+}
+
+app-footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  background-color: #f0f0f0;
+}

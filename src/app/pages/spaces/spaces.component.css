@@ -1,0 +1,32 @@
+.space-card {
+  height: 250px;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.space-card:hover {
+  transform: scale(1.03);
+}
+
+.space-card img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.overlay-title {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6); /* شفافية */
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+}
+
+.overlay-title h5 {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}

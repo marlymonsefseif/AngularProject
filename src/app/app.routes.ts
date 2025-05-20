@@ -13,7 +13,7 @@ import { DashboardHomeComponent } from './pages/admin-dashboard/dashboard-home/d
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'register',
+        redirectTo: 'home',
         pathMatch: 'full'
     },
     {
