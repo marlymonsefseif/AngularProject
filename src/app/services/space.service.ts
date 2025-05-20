@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Space, SpaceDTO } from '../models/space.model';
@@ -18,7 +18,18 @@ export class SpaceService {
   }
 
   addSpace(spaceDto: SpaceDTO): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}`, spaceDto)
+    const token = localStorage.getItem("AdminAuthToken");
+    if(token!= null)
+    {
+      console.log("not authorize");
+      return throwError(() => 'Not authorized');
+    }
+    else
+    {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this.http.post<any>(`${this.apiUrl}`, spaceDto, { headers })
       .pipe(
         map(response => {
           return {
@@ -28,6 +39,8 @@ export class SpaceService {
         }),
         catchError(this.handleError)
       );
+    }
+    
   }
 
   private handleError(error: HttpErrorResponse) {

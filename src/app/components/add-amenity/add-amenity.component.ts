@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AmenityService } from '../../services/amenity.service';
+import { CommonModule } from '@angular/common';
 import { AmenityDto } from '../../models/amenity.model';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -8,7 +10,8 @@ import { HttpErrorResponse } from '@angular/common/http';
   selector: 'app-add-amenity',
   templateUrl: './add-amenity.component.html',
   styleUrls: ['./add-amenity.component.css'],
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule]
 })
 export class AddAmenityComponent implements OnInit {
   amenityForm!: FormGroup;

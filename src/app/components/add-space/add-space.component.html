@@ -1,153 +1,145 @@
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="text-center">Add New Space</h3>
-        </div>
-        <div class="card-body">
-          <!-- Success Alert -->
-          <div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ successMessage }}
-            <button type="button" class="btn-close" (click)="showSuccessAlert = false" aria-label="Close"></button>
-          </div>
+<div class="admin-form-container">
+  <h2 class="admin-form-title">Add New Space</h2>
 
-          <!-- Error Alert -->
-          <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ errorMessage }}
-            <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
-          </div>
+  <!-- Success Alert -->
+  <div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+    {{ successMessage }}
+    <button type="button" class="btn-close" (click)="showSuccessAlert = false" aria-label="Close"></button>
+  </div>
 
-          <form [formGroup]="spaceForm" (ngSubmit)="onSubmit()">
-            <!-- Name -->
-            <div class="mb-3">
-              <label for="name" class="form-label">Space Name</label>
-              <input type="text" class="form-control" id="name" formControlName="name"
-                [ngClass]="{'is-invalid': spaceForm.get('name')?.invalid && spaceForm.get('name')?.touched}">
-              <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['required']">
-                Space name is required
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['minlength']">
-                Name must be at least 3 characters
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['maxlength']">
-                Name cannot exceed 20 characters
-              </div>
-            </div>
+  <!-- Error Alert -->
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+    {{ errorMessage }}
+    <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
+  </div>
 
-            <!-- Capacity -->
-            <div class="mb-3">
-              <label for="capacity" class="form-label">Capacity</label>
-              <input type="number" class="form-control" id="capacity" formControlName="capacity"
-                [ngClass]="{'is-invalid': spaceForm.get('capacity')?.invalid && spaceForm.get('capacity')?.touched}">
-              <div class="invalid-feedback" *ngIf="spaceForm.get('capacity')?.errors?.['required']">
-                Capacity is required
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('capacity')?.errors?.['min']">
-                Capacity must be at least 1
-              </div>
-            </div>
-
-            <!-- Price Per Hour -->
-            <div class="mb-3">
-              <label for="pricePerHour" class="form-label">Price Per Hour</label>
-              <input type="number" class="form-control" id="pricePerHour" formControlName="pricePerHour"
-                [ngClass]="{'is-invalid': spaceForm.get('pricePerHour')?.invalid && spaceForm.get('pricePerHour')?.touched}">
-              <div class="invalid-feedback" *ngIf="spaceForm.get('pricePerHour')?.errors?.['required']">
-                Price per hour is required
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('pricePerHour')?.errors?.['min']">
-                Price must be greater than or equal to 0
-              </div>
-            </div>
-
-            <!-- Space Type -->
-            <div class="mb-3">
-              <label for="spaceType" class="form-label">Space Type</label>
-              <select class="form-select" id="spaceType" formControlName="spaceType"
-                [ngClass]="{'is-invalid': spaceForm.get('spaceType')?.invalid && spaceForm.get('spaceType')?.touched}">
-                <option value="">Select Space Type</option>
-                <option [value]="0">Study Space</option>
-                <option [value]="1">Meeting Room</option>
-                <option [value]="2">Event Space</option>
-                <option [value]="3">Tech Lab</option>
-              </select>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('spaceType')?.errors?.['required']">
-                Space type is required
-              </div>
-            </div>
-
-            <!-- Available From -->
-            <div class="mb-3">
-              <label for="availableFrom" class="form-label">Available From</label>
-              <input type="time" class="form-control" id="availableFrom" formControlName="availableFrom"
-                [ngClass]="{'is-invalid': spaceForm.get('availableFrom')?.invalid && spaceForm.get('availableFrom')?.touched}">
-              <div class="invalid-feedback" *ngIf="spaceForm.get('availableFrom')?.errors?.['required']">
-                Available from time is required
-              </div>
-            </div>
-
-            <!-- Available To -->
-            <div class="mb-3">
-              <label for="availableTo" class="form-label">Available To</label>
-              <input type="time" class="form-control" id="availableTo" formControlName="availableTo"
-                [ngClass]="{'is-invalid': spaceForm.get('availableTo')?.invalid && spaceForm.get('availableTo')?.touched}">
-              <div class="invalid-feedback" *ngIf="spaceForm.get('availableTo')?.errors?.['required']">
-                Available to time is required
-              </div>
-            </div>
-
-            <!-- Is Available -->
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="isAvailable" formControlName="isAvailable">
-              <label class="form-check-label" for="isAvailable">Space is Available</label>
-            </div>
-
-            <!-- Description -->
-            <div class="mb-3">
-              <label for="description" class="form-label">Description</label>
-              <textarea class="form-control" id="description" rows="3" formControlName="description"
-                [ngClass]="{'is-invalid': spaceForm.get('description')?.invalid && spaceForm.get('description')?.touched}"></textarea>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('description')?.errors?.['required']">
-                Description is required
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('description')?.errors?.['minlength']">
-                Description must be at least 10 characters
-              </div>
-            </div>
-
-            <!-- Amenities -->
-            <div class="mb-4">
-              <label class="form-label">Amenities</label>
-              <div *ngIf="isLoadingAmenities" class="text-center">
-                <div class="spinner-border text-primary" role="status">
-                  <span class="visually-hidden">Loading...</span>
-                </div>
-              </div>
-              <div *ngIf="!isLoadingAmenities" class="amenities-container">
-                <div class="amenity-box" *ngFor="let amenity of amenities" 
-                     [class.selected]="spaceForm.get('amenitieIds')?.value?.includes(amenity.id)"
-                     (click)="toggleAmenity(amenity.id)">
-                  <div class="amenity-content">
-                    <i class="bi bi-check-circle-fill" *ngIf="spaceForm.get('amenitieIds')?.value?.includes(amenity.id)"></i>
-                    <span>{{amenity.name}}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="invalid-feedback" *ngIf="spaceForm.get('amenitieIds')?.errors?.['required']">
-                Please select at least one amenity
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-                {{ isSubmitting ? 'Adding Space...' : 'Add Space' }}
-              </button>
-            </div>
-          </form>
-        </div>
+  <form [formGroup]="spaceForm" (ngSubmit)="onSubmit()">
+    <!-- Name -->
+    <div class="form-group">
+      <label for="name" class="form-label">Space Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name"
+        [ngClass]="{'is-invalid': spaceForm.get('name')?.invalid && spaceForm.get('name')?.touched}">
+      <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['required']">
+        Space name is required
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['minlength']">
+        Name must be at least 3 characters
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('name')?.errors?.['maxlength']">
+        Name cannot exceed 20 characters
       </div>
     </div>
-  </div>
+
+    <!-- Capacity -->
+    <div class="form-group">
+      <label for="capacity" class="form-label">Capacity</label>
+      <input type="number" class="form-control" id="capacity" formControlName="capacity"
+        [ngClass]="{'is-invalid': spaceForm.get('capacity')?.invalid && spaceForm.get('capacity')?.touched}">
+      <div class="invalid-feedback" *ngIf="spaceForm.get('capacity')?.errors?.['required']">
+        Capacity is required
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('capacity')?.errors?.['min']">
+        Capacity must be at least 1
+      </div>
+    </div>
+
+    <!-- Price Per Hour -->
+    <div class="form-group">
+      <label for="pricePerHour" class="form-label">Price Per Hour</label>
+      <input type="number" class="form-control" id="pricePerHour" formControlName="pricePerHour"
+        [ngClass]="{'is-invalid': spaceForm.get('pricePerHour')?.invalid && spaceForm.get('pricePerHour')?.touched}">
+      <div class="invalid-feedback" *ngIf="spaceForm.get('pricePerHour')?.errors?.['required']">
+        Price per hour is required
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('pricePerHour')?.errors?.['min']">
+        Price must be greater than or equal to 0
+      </div>
+    </div>
+
+    <!-- Space Type -->
+    <div class="form-group">
+      <label for="spaceType" class="form-label">Space Type</label>
+      <select class="form-select" id="spaceType" formControlName="spaceType"
+        [ngClass]="{'is-invalid': spaceForm.get('spaceType')?.invalid && spaceForm.get('spaceType')?.touched}">
+        <option value="">Select Space Type</option>
+        <option [value]="0">Study Space</option>
+        <option [value]="1">Meeting Room</option>
+        <option [value]="2">Event Space</option>
+        <option [value]="3">Tech Lab</option>
+      </select>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('spaceType')?.errors?.['required']">
+        Space type is required
+      </div>
+    </div>
+
+    <!-- Available From -->
+    <div class="form-group">
+      <label for="availableFrom" class="form-label">Available From</label>
+      <input type="time" class="form-control" id="availableFrom" formControlName="availableFrom"
+        [ngClass]="{'is-invalid': spaceForm.get('availableFrom')?.invalid && spaceForm.get('availableFrom')?.touched}">
+      <div class="invalid-feedback" *ngIf="spaceForm.get('availableFrom')?.errors?.['required']">
+        Available from time is required
+      </div>
+    </div>
+
+    <!-- Available To -->
+    <div class="form-group">
+      <label for="availableTo" class="form-label">Available To</label>
+      <input type="time" class="form-control" id="availableTo" formControlName="availableTo"
+        [ngClass]="{'is-invalid': spaceForm.get('availableTo')?.invalid && spaceForm.get('availableTo')?.touched}">
+      <div class="invalid-feedback" *ngIf="spaceForm.get('availableTo')?.errors?.['required']">
+        Available to time is required
+      </div>
+    </div>
+
+    <!-- Is Available -->
+    <div class="form-check">
+      <input type="checkbox" class="form-check-input" id="isAvailable" formControlName="isAvailable">
+      <label class="form-check-label" for="isAvailable">Space is Available</label>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" rows="3" formControlName="description"
+        [ngClass]="{'is-invalid': spaceForm.get('description')?.invalid && spaceForm.get('description')?.touched}"></textarea>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('description')?.errors?.['required']">
+        Description is required
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('description')?.errors?.['minlength']">
+        Description must be at least 10 characters
+      </div>
+    </div>
+
+    <!-- Amenities -->
+    <div class="form-group">
+      <label class="form-label">Amenities</label>
+      <div *ngIf="isLoadingAmenities" class="text-center">
+        <div class="spinner-border spinner-border-sm" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      <div *ngIf="!isLoadingAmenities" class="amenities-container">
+        <div class="amenity-box" *ngFor="let amenity of amenities" 
+             [class.selected]="spaceForm.get('amenitieIds')?.value?.includes(amenity.id)"
+             (click)="toggleAmenity(amenity.id)">
+          <div class="amenity-content">
+            <i class="bi bi-check" *ngIf="spaceForm.get('amenitieIds')?.value?.includes(amenity.id)"></i>
+            <span>{{amenity.name}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="invalid-feedback" *ngIf="spaceForm.get('amenitieIds')?.errors?.['required']">
+        Please select at least one amenity
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-group">
+      <button type="submit" class="btn-primary" [disabled]="isSubmitting">
+        <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        {{ isSubmitting ? 'Adding Space...' : 'Add Space' }}
+      </button>
+    </div>
+  </form>
 </div> 

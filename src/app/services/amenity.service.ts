@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Amenity, AmenityDto } from '../models/amenity.model';
@@ -19,16 +19,28 @@ export class AmenityService {
       );
   }
   addAmenity(name: string): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}?name=${encodeURIComponent(name)}`, {})
-      .pipe(
-        map(response => {
-          return {
-            status: 200,
-            data: response
-          };
-        }),
-        catchError(this.handleError)
-      );
+    const token = localStorage.getItem("AdminAuthToken");
+    if(token!= null)
+    {
+      console.log("not authorize");
+      return throwError(() => 'Not authorized');
+    }
+    else
+    {
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+      return this.http.post<any>(`${this.apiUrl}?name=${encodeURIComponent(name)}`, {headers})
+        .pipe(
+          map(response => {
+            return {
+              status: 200,
+              data: response
+            };
+          }),
+          catchError(this.handleError)
+        );
+    }
   }
 
   private handleError(error: HttpErrorResponse) {

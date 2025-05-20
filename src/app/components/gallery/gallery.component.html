@@ -1,71 +1,62 @@
-<div class="container mt-4">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">
-          <h3 class="text-center">Upload Space Image</h3>
-        </div>
-        <div class="card-body">
-          <!-- Success Alert -->
-          <div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ successMessage }}
-            <button type="button" class="btn-close" (click)="showSuccessAlert = false" aria-label="Close"></button>
-          </div>
+<div class="admin-form-container">
+    <h2 class="admin-form-title">Add Gallery Images</h2>
 
-          <!-- Error Alert -->
-          <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ errorMessage }}
-            <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
-          </div>
+    <!-- Success Alert -->
+    <div *ngIf="showSuccessAlert" class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage }}
+        <button type="button" class="btn-close" (click)="showSuccessAlert = false" aria-label="Close"></button>
+    </div>
 
-          <form [formGroup]="galleryForm" (ngSubmit)="onSubmit()">
-            <!-- Space Selection -->
-            <div class="mb-3">
-              <label for="spaceId" class="form-label">Select Space</label>
-              <select class="form-select" id="spaceId" formControlName="spaceId"
+    <!-- Error Alert -->
+    <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
+    </div>
+
+    <form [formGroup]="galleryForm" (ngSubmit)="onSubmit()">
+        <!-- Space Selection -->
+        <div class="form-group">
+            <label for="spaceId" class="form-label">Select Space</label>
+            <select class="form-select" id="spaceId" formControlName="spaceId"
                 [ngClass]="{'is-invalid': galleryForm.get('spaceId')?.invalid && galleryForm.get('spaceId')?.touched}">
                 <option value="">Select a Space</option>
                 <option *ngFor="let space of spaces" [value]="space.id">{{space.name}}</option>
-              </select>
-              <div class="invalid-feedback" *ngIf="galleryForm.get('spaceId')?.errors?.['required']">
+            </select>
+            <div class="invalid-feedback" *ngIf="galleryForm.get('spaceId')?.errors?.['required']">
                 Please select a space
-              </div>
             </div>
-
-            <!-- Image Upload -->
-            <div class="mb-3">
-              <label for="ImgaeFile" class="form-label">Image</label>
-              <input type="file" class="form-control" id="ImgaeFile" accept="image/*" (change)="onFileSelected($event)"
-                [ngClass]="{'is-invalid': galleryForm.get('ImgaeFile')?.invalid && galleryForm.get('ImgaeFile')?.touched}">
-              <div class="invalid-feedback" *ngIf="galleryForm.get('ImgaeFile')?.errors?.['required']">
-                Please select an image
-              </div>
-            </div>
-
-            <!-- Image Preview -->
-            <div class="mb-3" *ngIf="previewUrl">
-              <label class="form-label">Image Preview</label>
-              <div class="image-preview">
-                <img [src]="previewUrl" alt="Preview" class="img-fluid rounded">
-              </div>
-            </div>
-
-            <!-- Caption -->
-            <div class="mb-3">
-              <label for="caption" class="form-label">Caption (Optional)</label>
-              <textarea class="form-control" id="caption" rows="3" formControlName="caption"
-                placeholder="Enter a caption for the image"></textarea>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary" [disabled]="isSubmitting">
-                {{ isSubmitting ? 'Uploading...' : 'Upload Image' }}
-              </button>
-            </div>
-          </form>
         </div>
-      </div>
-    </div>
-  </div>
+
+        <!-- Image Upload -->
+        <div class="form-group">
+            <label for="ImgaeFile" class="form-label">Image</label>
+            <input type="file" class="form-control" id="ImgaeFile" accept="image/*" (change)="onFileSelected($event)"
+                [ngClass]="{'is-invalid': galleryForm.get('ImgaeFile')?.invalid && galleryForm.get('ImgaeFile')?.touched}">
+            <div class="invalid-feedback" *ngIf="galleryForm.get('ImgaeFile')?.errors?.['required']">
+                Please select an image
+            </div>
+        </div>
+
+        <!-- Image Preview -->
+        <div class="form-group" *ngIf="previewUrl">
+            <label class="form-label">Image Preview</label>
+            <div class="image-preview">
+                <img [src]="previewUrl" alt="Preview" class="img-fluid rounded">
+            </div>
+        </div>
+
+        <!-- Caption -->
+        <div class="form-group">
+            <label for="caption" class="form-label">Caption (Optional)</label>
+            <textarea class="form-control" id="caption" rows="3" formControlName="caption"
+                placeholder="Enter a caption for the image"></textarea>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="form-group">
+            <button type="submit" class="btn-submit" [disabled]="isSubmitting">
+                {{ isSubmitting ? 'Uploading...' : 'Upload Image' }}
+            </button>
+        </div>
+    </form>
 </div> 

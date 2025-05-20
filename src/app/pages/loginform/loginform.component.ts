@@ -45,6 +45,7 @@ export class LoginformComponent {
             localStorage.setItem('UserAuthToken', response.token);
             localStorage.setItem('UserId',response.id);
           }
+          localStorage.setItem('fName',response.name)
           this.router.navigate(['/home']);
         },
         error: (err) => {
