@@ -1,27 +1,44 @@
-<nav class="navbar navbar-expand-lg" style="background-color: #f0f4f8;">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f4f8;">
+  <div class="container">
+    <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="1.png" alt="Makank Logo" width="80" height="80">
+      <img src="1.png" alt="Makank Logo" width="80" height="80" class="d-inline-block align-top">
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    
+    <!-- Mobile Toggle Button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
+    <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link active text-dark fw-bold" href="#">Spaces</a>
+      <ul class="navbar-nav ms-auto align-items-center">
+        <!-- Main Links -->
+        <li class="nav-item mx-2">
+          <a class="nav-link active fw-bold text-dark" href="#">Spaces</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark fw-bold" href="#">Amenities</a>
+        <li class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" href="#">Amenities</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark fw-bold" href="#">About</a>
+        <li class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" href="#">About</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark fw-bold" href="#">Memberships</a>
+        <li class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" href="#">Memberships</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark fw-bold" href="#">Contact</a>
+        <li class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" href="#">Contact</a>
+        </li>
+        
+        <!-- Account Dropdown -->
+        <li class="nav-item dropdown mx-2">
+          <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">
+            Account
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item fw-bold" href="#">Login</a></li>
+            <li><a class="dropdown-item fw-bold" href="#">Register</a></li>
+          </ul>
         </li>
       </ul>
     </div>

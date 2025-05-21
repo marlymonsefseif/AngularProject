@@ -1,9 +1,0 @@
-.amenity-box {
-    background-color: #fdfdfd;
-    transition: 0.3s ease;
-  }
-
-  .amenity-box:hover {
-    transform: translateY(-5px);
-    background-color: #f8f9fa;
-  }
