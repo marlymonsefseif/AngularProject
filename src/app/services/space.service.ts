@@ -17,6 +17,10 @@ export class SpaceService {
     return this.http.get<Space[]>(this.apiUrl);
   }
 
+  getById(id:string|null): Observable<Space> {
+    return this.http.get<Space>(`${this.apiUrl}/${id}`);
+  }
+
   addSpace(spaceDto: SpaceDTO): Observable<any> {
     const token = localStorage.getItem("AdminAuthToken");
     if(token!= null)
@@ -40,7 +44,7 @@ export class SpaceService {
         catchError(this.handleError)
       );
     }
-    
+
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -52,4 +56,4 @@ export class SpaceService {
     }
     return throwError(() => errorMessage);
   }
-} 
+}
