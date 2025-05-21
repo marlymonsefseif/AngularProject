@@ -1,5 +1,4 @@
 import { UserService } from './../../services/user.service';
-import { AccountService } from './../../services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,29 +11,36 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class UserprofileComponent implements OnInit {
   UserId: any = 0;
-  user : any = {};
-  token : any = localStorage.getItem("UserAuthToken");
+  user: any = {};
+  token: any = localStorage.getItem("UserAuthToken");
 
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router:Router) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.UserId = this.activatedRoute.snapshot.paramMap.get("id");
     this.userService.getUser(this.UserId).subscribe({
-        next: (response) => {
-          this.user = response;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
+      next: (response) => {
+        this.user = response;
+        this.userData.patchValue({
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
+          email: this.user.email,
+          phoneNumber: this.user.phoneNumber,
+          img: this.user.profileImg
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
   }
 
   userData = new FormGroup({
     firstName: new FormControl('', Validators.minLength(3)),
     lastName: new FormControl('', Validators.minLength(3)),
     email: new FormControl('', Validators.email),
-    phoneNumber: new FormControl('',Validators.maxLength(11)),
-    img: new FormControl(null),
+    phoneNumber: new FormControl('', Validators.maxLength(11)),
+    img: new FormControl(),
     oldPassword: new FormControl(''),
     newPassword: new FormControl('')
   });
@@ -68,18 +74,17 @@ export class UserprofileComponent implements OnInit {
   }
 
   saveEdit() {
-    if(this.userData.status == "VALID") {
+    if (this.userData.status == "VALID") {
       console.log(this.userData.value);
-      this.userService.editUser(this.UserId,this.userData.value).subscribe({
+      this.userService.editUser(this.UserId, this.userData.value).subscribe({
         next: () => {
           this.userService.getUser(this.UserId).subscribe({
-            next: (res) => {
-              this.user = res;
+            next: (response) => {
+              this.user = response; 
             }
-          })
-          this.router.navigate([`/profile/${this.UserId}`]);
+          });
         }
-      })
+      });
     }
     else {
       alert("Check Errors and Fix It.");
