@@ -8,5 +8,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
+  userToken: any = localStorage.getItem("UserAuthToken");
+  adminToken: any = localStorage.getItem("AdminAuthToken");
+  userId: any = localStorage.getItem("UserId");
 }
