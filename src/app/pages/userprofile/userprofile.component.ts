@@ -80,7 +80,7 @@ export class UserprofileComponent implements OnInit {
         next: () => {
           this.userService.getUser(this.UserId).subscribe({
             next: (response) => {
-              this.user = response; 
+              this.user = response;
             }
           });
         }
