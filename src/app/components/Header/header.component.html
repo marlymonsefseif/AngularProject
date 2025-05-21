@@ -2,14 +2,14 @@
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="1.png" alt="Makank Logo" width="80" height="80" class="d-inline-block align-top">
+      <img src="1.png" alt="Makank Logo" width="70" height="70" class="d-inline-block align-top">
     </a>
-    
+
     <!-- Mobile Toggle Button -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
-    
+
     <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ms-auto align-items-center">
@@ -18,26 +18,28 @@
           <a class="nav-link active fw-bold text-dark" href="#">Spaces</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Amenities</a>
+          <a class="nav-link fw-bold text-dark" href="#amenities">Amenities</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">About</a>
+          <a class="nav-link fw-bold text-dark" [routerLink]="['/about']" [routerLinkActive]="'activebtn'"
+            [routerLinkActiveOptions]="{ exact: true }">About</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Memberships</a>
+          <a class="nav-link fw-bold text-dark" href="#membership">Memberships</a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link fw-bold text-dark" href="#">Contact</a>
         </li>
-        
+
         <!-- Account Dropdown -->
         <li class="nav-item dropdown mx-2">
-          <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="accountDropdown" role="button" data-bs-toggle="dropdown">
+          <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="accountDropdown" role="button"
+            data-bs-toggle="dropdown">
             Account
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item fw-bold" href="#">Login</a></li>
-            <li><a class="dropdown-item fw-bold" href="#">Register</a></li>
+            <li><a class="dropdown-item fw-bold" [routerLink]="['/login']" [routerLinkActive]="'activebtn'" [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
+            <li><a class="dropdown-item fw-bold" [routerLink]="['/register']" [routerLinkActive]="'activebtn'" [routerLinkActiveOptions]="{ exact: true }">Register</a></li>
           </ul>
         </li>
       </ul>
