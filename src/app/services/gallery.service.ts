@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { API_URL } from './URLservice';
+import { Gallery } from '../models/gallery.model';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,12 @@ export class GalleryService {
       return this.http.post(this.apiUrl, formData,{headers});
 
     }
-    
+
   }
-} 
+  getAll(): Observable<Gallery[]>{
+    return this.http.get<Gallery[]>(this.apiUrl);
+  }
+  getBySpace(spaceId:number): Observable<Gallery>{
+    return this.http.get<Gallery>(`${this.apiUrl}/space/${spaceId}`);
+  }
+}

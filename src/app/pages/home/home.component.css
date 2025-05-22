@@ -1,5 +1,5 @@
  .gradient-text {
-    background: linear-gradient(90deg, #3a7bd5, #00d2ff);
+    background: linear-gradient(90deg, #3a7bd5, #00bfff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -43,11 +43,11 @@
   
   
   .bg-primary {
-    background-color: #3a7bd5 !important;
+    background-color: #00bfff !important;
   }
   
   .text-primary {
-    color: #3a7bd5 !important;
+    color: #00bfff !important;
   }
   
 .icon-wrapper i {

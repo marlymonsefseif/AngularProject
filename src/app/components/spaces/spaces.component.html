@@ -1,0 +1,42 @@
+<div class="container my-5">
+  <h1 class="text-center text-decoration-underline mb-5 link-underline-primary custom-underline">Spaces</h1>
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <a 
+        class="nav-link custom-filter"
+        [class.active]="selectedType === null"
+        (click)="filterByType(null)">
+        All
+      </a>
+    </li>
+    @for(type of spaceTypes; track $index){
+      <li class="nav-item">
+        <a
+          class="nav-link custom-filter"
+          [class.active]="selectedType === type"
+          (click)="filterByType(type)">
+          {{ type }}
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-1">
+    @for (space of filteredSpaces; track $index) {
+      <div class="col">
+        <div class="card h-100 shadow-sm">
+          <img [src]="photosMap[space.id]|| 'assets/default.jpg'" class="card-img-top" alt="space image">
+          <div class="card-body">
+            <h5 class="card-title">{{ space.name }}</h5>
+            <p class="card-text"><strong>Capacity:</strong> {{ space.capacity }}</p>
+            <p class="card-text"><strong>Type:</strong> {{ SpaceType[space.spaceType] }}</p>
+            <p class="card-text"><strong>Price:</strong> {{ space.pricePerHour | currency }}</p>
+          </div>
+          <div class="card-footer bg-white border-top-0">
+            <button class="btn btn-outline-primary w-100 custom-button" [routerLink]="[`${space.id}`]">View Details</button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

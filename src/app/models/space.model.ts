@@ -1,10 +1,12 @@
 import { Timestamp } from "rxjs";
+import { Amenity } from "./amenity.model";
+import { Gallery } from "./gallery.model";
 
 export enum SpaceTypes {
-    StudySpace = 0,
-    MeetingRoom = 1,
-    EventSpace = 2,
-    TechLab = 3
+    'Study Space' = 0,
+    'Meeting Room' = 1,
+    'Event Space' = 2,
+    'Tech Lab' = 3
 }
 
 export interface SpaceDTO {
@@ -29,10 +31,11 @@ export interface Space {
     availableTo: string;
     isAvailable: boolean;
     description: string;
-    spaceAmenities: SpaceAmenity[];
+    amenites: Amenity[];
+    galleries?: Gallery[];
 }
 
 export interface SpaceAmenity {
     amenityId: number;
     spaceId: number;
-} 
+}

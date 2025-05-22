@@ -1,0 +1,100 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+/* Custom Divider */
+.divider-custom {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem 0;
+}
+
+.divider-custom-line {
+    width: 100px;
+    height: 4px;
+    background-color: #00bfff;
+    border-radius: 2px;
+}
+
+.divider-custom-icon {
+    color: #00bfff;
+    font-size: 1.5rem;
+    margin: 0 1rem;
+}
+
+/* Section Headings */
+.section-heading {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    color: #00bfff;
+}
+
+/* Image Container */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover {
+    transform: translateY(-5px);
+}
+
+/* Review Cards */
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+.review-stars {
+    letter-spacing: 3px;
+}
+
+/* Call to Action Section */
+#cta {
+    background: linear-gradient(135deg, #00bfff 0%, #009acd 100%);
+}
+
+#cta .btn {
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+#cta .btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .divider-custom-line {
+        width: 60px;
+    }
+    
+    h1.display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Animation for elements */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
