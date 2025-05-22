@@ -32,7 +32,7 @@ export interface Space {
     isAvailable: boolean;
     description: string;
     amenites: Amenity[];
-    galleries: Gallery[];
+    galleries?: Gallery[];
 }
 
 export interface SpaceAmenity {
