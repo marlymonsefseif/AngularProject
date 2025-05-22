@@ -1,4 +1,4 @@
-body {
+ body {
     background-color: #f8f9fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -24,3 +24,4 @@ body {
   .btn-primary:hover {
     background: linear-gradient(135deg, #0056b3, #003f7f);
   }
+  

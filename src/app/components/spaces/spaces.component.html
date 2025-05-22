@@ -1,6 +1,15 @@
-<div class="container my-5">
-<h1 class="text-center text-decoration-underline mb-5 link-underline-primary">Spaces</h1>
-<ul class="nav nav-tabs mb-4">
+
+<header class="bg-light py-5">
+  <div class="container text-center">
+    <h1 class="display-4 fw-bold">Our Spaces</h1>
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+      <div class="divider-custom-line"></div>
+    </div>
+  </div>
+</header>
+  <ul class="nav nav-tabs mb-1 mt-4 m-5">
   <li class="nav-item">
     <a
       class="nav-link"
@@ -20,7 +29,7 @@
   </li>
   }
 </ul>
-
+<div class="container">
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mt-1">
     @for (space of filteredSpaces; track $index) {
       <div class="col">

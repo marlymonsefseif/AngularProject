@@ -4,7 +4,7 @@
 
     <div class="col-md-6">
       <div class="img-container shadow rounded overflow-hidden animate__animated animate__fadeInLeft">
-        <img [src]="space.galleries[0].imageUrl" class="img-fluid w-100" alt="space image">
+        <!-- <img [src]="space.galleries[0].imageUrl" class="img-fluid w-100" alt="space image"> -->
       </div>
     </div>
 
@@ -37,10 +37,49 @@
 
 
           <div class="mt-4 d-grid gap-2">
-            <button class="btn btn-primary btn-lg shadow-sm">Book Now</button>
+            <button [disabled]="!space.isAvailable" class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal" data-bs-target="#bookingModal">Book Now</button>
             <button class="btn btn-outline-secondary" [routerLink]="['/spaces']">Back to List</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content shadow-lg">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingModalLabel">Book <span class="text-primary">{{ space.name }}</span> </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label class="form-label">From</label>
+            <input type="datetime-local" class="form-control" [(ngModel)]="booking.from" name="from"
+              (change)="calculateTotalPrice()">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">To</label>
+            <input type="datetime-local" class="form-control" [(ngModel)]="booking.to" name="to"
+              (change)="calculateTotalPrice()">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Number of Persons</label>
+            <input type="number" class="form-control" [(ngModel)]="booking.persons" name="persons" min="1" max={{space.capacity}}>
+          </div>
+          @if(totalPrice !== null){
+            <div class="alert alert-info">
+              Total Price: <strong>{{ totalPrice | currency }}</strong>
+            </div>
+          }
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" (click)="confirmBooking()">Confirm</button>
       </div>
     </div>
   </div>
