@@ -23,18 +23,53 @@
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .card:hover {
   transform: scale(1.03);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
 .card-img-top {
   height: 200px;
   object-fit: cover;
 }
+
 .card-title {
   color: #343a40;
 }
+
 .card-text {
   color: #6c757d;
   margin-bottom: 6px;
+}
+
+/* Custom underline for the heading */
+.custom-underline {
+  text-decoration-color: #00bfff !important;
+}
+
+/* Custom button styling */
+.custom-button {
+  color: #00bfff !important;
+  border-color: #00bfff !important;
+}
+
+.custom-button:hover {
+  background-color: #00bfff !important;
+  color: white !important;
+}
+
+/* Custom filter tabs styling */
+.nav-tabs .custom-filter {
+  color: #495057;
+  /* Default color */
+}
+
+.nav-tabs .custom-filter.active {
+  color: #00bfff !important;
+  border-color: #00bfff #00bfff #fff !important;
+}
+
+.nav-tabs .custom-filter:hover:not(.active) {
+  color: #00bfff !important;
 }
