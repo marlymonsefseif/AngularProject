@@ -1,6 +1,7 @@
 export interface IReview {
     userId : number,
-    userName : string,
+    firstName : string,
+    lastNmae : string,
     roomId : number,
     rating : number,
     comment : string

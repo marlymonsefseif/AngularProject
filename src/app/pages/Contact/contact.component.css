@@ -17,3 +17,8 @@
   .contact-section {
     background-color: #f8fafc;
   }
+
+.btn-primary {
+  background-color: #00bfff !important;
+  border-color: #00bfff;
+}
