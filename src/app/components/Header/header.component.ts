@@ -1,14 +1,13 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
-  userToken: any = localStorage.getItem("UserAuthToken");
-  adminToken: any = localStorage.getItem("AdminAuthToken");
-  userId: any = localStorage.getItem("UserId");
+export class NavbarComponent {
+  
 }

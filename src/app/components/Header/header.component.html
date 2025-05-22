@@ -45,16 +45,6 @@
                 [routerLinkActiveOptions]="{ exact: true }">Register</a></li>
           </ul>
         </li>
-        @if(userToken) {
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" [routerLink]="['/profile',userId]">Profile</a>
-        </li>
-        }
-        @if(adminToken) {
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" [routerLink]="['/admin-dashboard']">Admin Dashboard</a>
-        </li>
-        }
       </ul>
     </div>
   </div>
