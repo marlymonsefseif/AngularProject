@@ -9,6 +9,7 @@ import { AddSpaceComponent } from './components/add-space/add-space.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { DashboardHomeComponent } from './pages/admin-dashboard/dashboard-home/dashboard-home.component';
+import { ContactComponent } from './pages/Contact/contact.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,10 @@ export const routes: Routes = [
     {
         path: 'register',
         component: RegisterformComponent 
+    },
+    {
+        path: 'contact',
+        component: ContactComponent 
     },
     {
         path: 'login',

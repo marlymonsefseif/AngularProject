@@ -1,11 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f4f8;">
   <div class="container">
-    <!-- Logo -->
+
     <a class="navbar-brand" href="#">
-      <img src="1.png" alt="Makank Logo" width="80" height="80" class="d-inline-block align-top">
+      <img src="1.png" alt="Makank Logo"  [routerLink]="'/Home'" width="80" height="80" class="d-inline-block align-top">
     </a>
     
-    <!-- Mobile Toggle Button -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,19 +15,13 @@
       <ul class="navbar-nav ms-auto align-items-center">
         <!-- Main Links -->
         <li class="nav-item mx-2">
-          <a class="nav-link active fw-bold text-dark" href="#">Spaces</a>
+          <a class="nav-link active fw-bold text-dark" [routerLink]="'/spaces'" href="#">Spaces</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Amenities</a>
+          <a class="nav-link fw-bold text-dark" [routerLink]="'/about'">About</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">About</a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Memberships</a>
-        </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Contact</a>
+          <a class="nav-link fw-bold text-dark" [routerLink]="'/contact'">Contact</a>
         </li>
         
         <!-- Account Dropdown -->
@@ -36,8 +30,8 @@
             Account
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item fw-bold" href="#">Login</a></li>
-            <li><a class="dropdown-item fw-bold" href="#">Register</a></li>
+            <li><a class="dropdown-item fw-bold" [routerLink]="'/login'">Login</a></li>
+            <li><a class="dropdown-item fw-bold"  [routerLink]="'/register'">Register</a></li>
           </ul>
         </li>
       </ul>
