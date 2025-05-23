@@ -30,6 +30,7 @@ export class HomeComponent {
   this.membership.getMemberShips().subscribe({
     next:(response)=>{
       this.memberShips=response;
+      console.log(response);
     },
     error:(error)=>{
       console.log(error);
