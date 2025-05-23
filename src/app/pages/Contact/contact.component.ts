@@ -14,7 +14,7 @@ export class ContactComponent implements OnInit{
   contactForm: FormGroup;
   isSubmitting = false;
   submitSuccess = false;
-  opinions:any;
+  messages!:any[];
 
   constructor(
     private fb: FormBuilder,
@@ -29,8 +29,11 @@ export class ContactComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.opinions= this.contactService.getMessage();
-    console.log(this.opinions);
+    this.contactService.getMessage().subscribe({
+      next: (response) => {
+        this.messages = response;
+      } 
+    })
     
   }
 

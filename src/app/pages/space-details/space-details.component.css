@@ -29,3 +29,7 @@ body {
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 191, 255, 0.4);
 }
+
+.border-primary {
+  border-color: #00bfff !important;
+}
