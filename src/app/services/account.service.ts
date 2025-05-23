@@ -9,7 +9,7 @@ import { API_URL } from './URLservice';
   providedIn: 'root'
 })
 export class AccountService {
-  baseurl = `${API_URL}Account`;
+  private baseurl = `${API_URL}Account`;
   
   constructor(private http : HttpClient) { }
 

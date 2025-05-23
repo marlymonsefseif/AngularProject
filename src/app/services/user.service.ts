@@ -7,7 +7,7 @@ import { API_URL } from './URLservice';
   providedIn: 'root'
 })
 export class UserService {
-  baseurl = `${API_URL}User`;
+  private baseurl = `${API_URL}User`;
 
   constructor(private http: HttpClient) { }
 
