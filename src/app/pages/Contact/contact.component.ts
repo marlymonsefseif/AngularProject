@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ContactService } from '../../services/contact.service';
 import { Contact } from '../../models/contact';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -18,7 +19,8 @@ export class ContactComponent implements OnInit{
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private router:Router
   ) {
     this.contactForm = this.fb.group({
       fullName: ['', [Validators.required, Validators.maxLength(100)]],
