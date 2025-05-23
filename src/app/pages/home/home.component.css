@@ -58,3 +58,7 @@
 .hover-shadow-lg:hover {
   box-shadow: 0 10px 20px rgba(58, 123, 213, 0.1) !important;
 }
+
+#cta {
+  background: linear-gradient(135deg, #00bfff 0%, #009acd 100%);
+}
