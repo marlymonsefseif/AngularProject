@@ -14,9 +14,13 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getUser(id: any): Observable<IUserData> {
+  private getToken(): string {
+    return this.adminToken || this.userToken || '';
+  }
+
+  getUser(id?: any): Observable<IUserData> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userToken}`
+      'Authorization': `Bearer ${this.getToken()}`
     });
 
     return this.http.get<IUserData>(`${this.baseurl}/${id}`, { headers });
@@ -24,7 +28,7 @@ export class UserService {
 
   editUser(id: any, user: any) : Observable<IUserData> {
     const headers = new HttpHeaders({
-      'Authorization': `Bearer ${this.userToken}`
+      'Authorization': `Bearer ${this.getToken()}`
     });
 
     return this.http.put<IUserData>(`${this.baseurl}/${id}`, user, { headers });

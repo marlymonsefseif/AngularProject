@@ -40,12 +40,10 @@ export class LoginformComponent {
           if (this.userData.value.email?.toLocaleLowerCase() == "admin@gmail.com") {
             localStorage.setItem('AdminAuthToken', response.token);
             localStorage.setItem('AdminId',response.id);
-            localStorage.setItem('Role',response.roles);
           }
           else {
             localStorage.setItem('UserAuthToken', response.token);
             localStorage.setItem('UserId',response.id);
-            localStorage.setItem('Role',response.roles);
           }
           localStorage.setItem('fName',response.name)
           this.router.navigate(['/home']);
