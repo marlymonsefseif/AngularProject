@@ -1,0 +1,97 @@
+<section class="contact-section py-5 bg-light" id="contact">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="display-5 fw-bold">Get In Touch</h2>
+      <p class="text-muted">We'd love to hear from you. Fill out the form below.</p>
+    </div>
+
+
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="bg-white shadow p-4 rounded">
+          <div class="mb-3">
+            <label for="fullName" class="form-label fw-semibold">Full Name</label>
+            <input type="text" class="form-control" id="fullName" formControlName="fullName"
+              [class.is-invalid]="contactForm.get('fullName')?.invalid && contactForm.get('fullName')?.touched">
+            <div *ngIf="contactForm.get('fullName')?.invalid && contactForm.get('fullName')?.touched"
+              class="invalid-feedback">
+              <div *ngIf="contactForm.get('fullName')?.errors?.['required']">Name is required</div>
+              <div *ngIf="contactForm.get('fullName')?.errors?.['maxlength']">Maximum length is 100 characters</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="email" class="form-label fw-semibold">Email</label>
+            <input type="email" class="form-control" id="email" formControlName="email"
+              [class.is-invalid]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+            <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+              class="invalid-feedback">
+              <div *ngIf="contactForm.get('email')?.errors?.['required']">Email is required</div>
+              <div *ngIf="contactForm.get('email')?.errors?.['email']">Please enter a valid email</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="subject" class="form-label fw-semibold">Subject</label>
+            <input type="text" class="form-control" id="subject" formControlName="subject"
+              [class.is-invalid]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+            <div *ngIf="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched"
+              class="invalid-feedback">
+              <div *ngIf="contactForm.get('subject')?.errors?.['required']">Subject is required</div>
+              <div *ngIf="contactForm.get('subject')?.errors?.['maxlength']">Maximum length is 150 characters</div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="message" class="form-label fw-semibold">Message</label>
+            <textarea class="form-control" id="message" rows="5" formControlName="message"
+              [class.is-invalid]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"></textarea>
+            <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+              class="invalid-feedback">
+              Message is required
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100 py-3" [disabled]="isSubmitting">
+            <span *ngIf="!isSubmitting">Send Message</span>
+            <span *ngIf="isSubmitting">Sending...</span>
+            <i class="fas ms-2" [class.fa-paper-plane]="!isSubmitting" [class.fa-spinner]="isSubmitting"
+              [class.fa-spin]="isSubmitting"></i>
+          </button>
+
+          <div *ngIf="submitSuccess" class="alert alert-success mt-3">
+            Thank you! Your message has been sent successfully.
+          </div>
+
+          <div *ngIf="submitError" class="alert alert-danger mt-3">
+            Failed to send message. Please try again.<br>
+            OR <br> If you haven't logged in yet, go and log in.
+          </div>
+        </form>
+      </div>
+    </div>
+
+
+    <div class="row mt-5">
+      <div class="col-12">
+        <h4 class="fw-bold mb-4" style="color:#00bfff">What People Are Saying</h4>
+        <div class="row g-4">
+
+          @for (message of messages; track message.id) {
+          <div class="col-md-4">
+            <div class="p-4 bg-white shadow rounded h-100 d-flex flex-column animate__animated animate__fadeInUp">
+              <p class="fst-italic mb-2 flex-grow-1">"{{message.message}}"</p>
+              <div>
+                <h6 class="fw-bold mb-0">- {{message.fullName}}</h6>
+                <small class="text-muted">Sent from contact form</small>
+              </div>
+            </div>
+          </div>
+          }
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

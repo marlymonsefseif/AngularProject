@@ -1,8 +1,9 @@
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
-import { DynamicServiceService } from '../../services/dynamic-service.service';
-import { ThisReceiver } from '@angular/compiler';
+import { MemberShipServiceService } from '../../services/member-ship-service.service';
+import { AmenityService } from '../../services/amenity.service';
+import { StaticServiceService } from '../../services/static-service.service';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +18,25 @@ export class HomeComponent {
   memberShips!:any;
   aminities!:any;
 
-  constructor(private userService:UserService, private router:Router,
-              private spaceService:DynamicServiceService){}
+  constructor(private userService:UserService,
+              private router:Router,
+              private spaceService:StaticServiceService,
+              private membership:MemberShipServiceService){}
 
   
   ngOnInit(): void {
   this.spaces= this.spaceService.getAllSpaces();
-  this.memberShips=this.spaceService.getAllMemberships();
+
+  this.membership.getMemberShips().subscribe({
+    next:(response)=>{
+      this.memberShips=response;
+      console.log(response);
+    },
+    error:(error)=>{
+      console.log(error);
+    }
+   });
+   
   this.aminities=this.spaceService.getAllAminities();
   }
 

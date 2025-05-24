@@ -45,13 +45,13 @@
           <div class="card-body">
             <div class="d-flex align-items-center mb-3">
               <div>
-                <h5 class="card-title mb-0">{{review.userName}}</h5>
+                <h5 class="card-title mb-0">{{review.firstName}} {{review.lastName}}</h5>
               </div>
             </div>
-            <p class="card-text">{{review.comment}}</p>
+            <p class="card-text">"{{review.comment}}"</p>
             <div class="review-stars mb-3 text-warning">
               @for (star of getArray(review.rating); track $index){
-              <i class="fa-solid fa-star" style="color: rgb(247, 247, 35);"></i>
+              <i class="fa-solid fa-star" style="color: rgb(243, 243, 63);"></i>
               }
               @for (star of getArray(5 - review.rating); track $index) {
               <i class="fa-regular fa-star"></i>

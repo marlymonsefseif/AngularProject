@@ -1,11 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f0f4f8;">
   <div class="container">
-    <!-- Logo -->
+
     <a class="navbar-brand" href="#">
-      <img src="1.png" alt="Makank Logo" width="70" height="70" class="d-inline-block align-top">
+      <img src="1.png" alt="Makank Logo" [routerLink]="['/Home']" width="65" height="65"
+        class="d-inline-block align-top">
     </a>
 
-    <!-- Mobile Toggle Button -->
+
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,35 +16,35 @@
       <ul class="navbar-nav ms-auto align-items-center">
         <!-- Main Links -->
         <li class="nav-item mx-2">
-          <a class="nav-link active fw-bold text-dark" [routerLink]="['/spaces']" [routerLinkActive]="['active-link']"
-            [routerLinkActiveOptions]="{ exact: true }">Spaces</a>
+          <a class="nav-link active fw-bold text-dark" [routerLink]="['/spaces']">Spaces</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#amenities">Amenities</a>
+          <a class="nav-link fw-bold text-dark" [routerLink]="['/about']">About</a>
         </li>
         <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" [routerLink]="['/about']" [routerLinkActive]="['active-link']"
-            [routerLinkActiveOptions]="{ exact: true }">About</a>
+          <a class="nav-link fw-bold text-dark" [routerLink]="['/contact']">Contact</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#membership">Memberships</a>
+
+        <li *ngIf="isAdmin()" class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" [routerLink]="['/admin-dashboard']">Dashboard</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link fw-bold text-dark" href="#">Contact</a>
+        <li *ngIf="isLoggedIn()" class="nav-item mx-2">
+          <a class="nav-link fw-bold text-dark" [routerLink]="[`profile/${Id}`]">Profile</a>
         </li>
 
         <!-- Account Dropdown -->
-        <li class="nav-item dropdown mx-2">
+        <li class="nav-item dropdown mx-2" *ngIf="!isLoggedIn()">
           <a class="nav-link dropdown-toggle fw-bold text-dark" href="#" id="accountDropdown" role="button"
             data-bs-toggle="dropdown">
             Account
           </a>
           <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item fw-bold" [routerLink]="['/login']" [routerLinkActive]="['active-link']"
-                [routerLinkActiveOptions]="{ exact: true }">Login</a></li>
-            <li><a class="dropdown-item fw-bold" [routerLink]="['/register']" [routerLinkActive]="['active-link']"
-                [routerLinkActiveOptions]="{ exact: true }">Register</a></li>
+            <li><a class="dropdown-item fw-bold" [routerLink]="['/login']">Login</a></li>
+            <li><a class="dropdown-item fw-bold" [routerLink]="['/register']">Register</a></li>
           </ul>
+        </li>
+        <li class="nav-item mx-2" *ngIf="isLoggedIn()">
+          <a class="nav-link fw-bold text-danger" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
