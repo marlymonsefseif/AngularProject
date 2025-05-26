@@ -41,4 +41,8 @@ export class UserService {
 
     return this.http.get<IUserData[]>(this.baseurl, {headers});
   }
+
+  deleteUser() {
+    
+  }
 }

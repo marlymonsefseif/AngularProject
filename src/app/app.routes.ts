@@ -11,6 +11,7 @@ import { ContactComponent } from './pages/Contact/contact.component';
 import { SpacesComponent } from './components/spaces/spaces.component';
 import { SpaceDetailsComponent } from './pages/space-details/space-details.component';
 import { AboutComponent } from './pages/about/about.component';
+import { UsersComponent } from './components/users/users.component';
 
 export const routes: Routes = [
     {
@@ -53,6 +54,10 @@ export const routes: Routes = [
             {
                 path: 'add-gallery',
                 component: GalleryComponent
+            },
+            {
+                path: "users",
+                component: UsersComponent
             }
         ]
     },

@@ -34,6 +34,14 @@ import { RouterModule } from '@angular/router';
             <a routerLink="/admin-dashboard/add-gallery" class="btn btn-primary">Add Gallery</a>
           </div>
         </div>
+        <div class="col-md-4">
+          <div class="dashboard-card">
+            <i class="fa-solid fa-images"></i>
+            <h3>Users</h3>
+            <p>Manage users</p>
+            <a routerLink="/admin-dashboard/add-gallery" class="btn btn-primary">All Users</a>
+          </div>
+        </div>
       </div>
     </div>
   `,

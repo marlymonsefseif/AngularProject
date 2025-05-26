@@ -1,0 +1,136 @@
+.admin-dashboard-container {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.admin-dashboard-title {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.admin-dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background: #3498db;
+  border-radius: 2px;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.admin-table thead th {
+  background-color: #3498db;
+  color: white;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  top: 0;
+}
+
+.admin-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.admin-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.admin-table tbody td {
+  padding: 1rem;
+  border-bottom: 1px solid #eaeef2;
+  vertical-align: middle;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.user-email {
+  color: #3498db;
+  font-weight: 500;
+}
+
+.membership-badge {
+  background-color: #e3f2fd;
+  color: #3498db;
+  padding: 0.4rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.actions-cell {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-show, .btn-delete {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.btn-show {
+  color: #3498db;
+}
+
+.btn-edit:hover {
+  background-color: rgba(52, 152, 219, 0.1);
+}
+
+.btn-delete {
+  color: #e74c3c;
+}
+
+.btn-delete:hover {
+  background-color: rgba(231, 76, 60, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .admin-dashboard-container {
+    padding: 1rem;
+  }
+  
+  .admin-table thead {
+    display: none;
+  }
+  
+  .admin-table tbody td {
+    display: block;
+    padding: 0.75rem;
+  }
+  
+  .admin-table tbody td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    display: inline-block;
+    width: 100px;
+    color: #7f8c8d;
+  }
+  
+  .actions-cell {
+    justify-content: flex-end;
+  }
+}

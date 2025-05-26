@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 
 @Component({
@@ -9,10 +9,12 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 
-export class headerComponent {
-  Id = localStorage.getItem('UserId') || localStorage.getItem('AdminId');
-
+export class headerComponent implements OnInit {
+  Id? : any;
   constructor(private router: Router) { }
+  ngOnInit(): void {
+    this.Id = localStorage.getItem('UserId') || localStorage.getItem('AdminId');
+  }
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('UserAuthToken') || !!localStorage.getItem('AdminAuthToken');
