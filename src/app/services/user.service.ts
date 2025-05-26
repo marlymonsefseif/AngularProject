@@ -34,7 +34,7 @@ export class UserService {
     return this.http.put<IUserData>(`${this.baseurl}/${id}`, user, { headers });
   }
 
-  getAllUsers() {
+  getAllUsers() : Observable<IUserData[]> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.adminToken}`
     });
@@ -42,7 +42,11 @@ export class UserService {
     return this.http.get<IUserData[]>(this.baseurl, {headers});
   }
 
-  deleteUser() {
-    
+  deleteUser(id?:any) : Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.adminToken}`
+    });
+
+    return this.http.delete(`${this.baseurl}/${id}`, {headers});
   }
 }
