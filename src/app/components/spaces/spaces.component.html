@@ -34,7 +34,7 @@
     @for (space of filteredSpaces; track $index) {
       <div class="col">
         <div class="card h-100 shadow-sm">
-          <img [src]="photosMap[space.id]|| 'assets/default.jpg'" class="card-img-top" alt="space image">
+          <img [src]="space.galleries?.[0]?.imageUrl" class="card-img-top" alt="space image">
           <div class="card-body">
             <h5 class="card-title">{{ space.name }}</h5>
             <p class="card-text"><strong>Capacity:</strong> {{ space.capacity }}</p>
