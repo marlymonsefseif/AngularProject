@@ -17,33 +17,52 @@ export class SpaceService {
     return this.http.get<Space[]>(this.apiUrl);
   }
 
-  getById(id:string|null): Observable<Space> {
+  getById(id: string | null): Observable<Space> {
     return this.http.get<Space>(`${this.apiUrl}/${id}`);
   }
 
   addSpace(spaceDto: SpaceDTO): Observable<any> {
     const token = localStorage.getItem("AdminAuthToken");
-    if(token!= null)
-    {
-      console.log("not authorize");
+    // if(token!= null)
+    // {
+    //   console.log("not authorize");
+    //   return throwError(() => 'Not authorized');
+    // }
+    // else
+    // {
+    //   const headers = new HttpHeaders({
+    //     'Authorization': `Bearer ${token}`
+    //   });
+    //   return this.http.post<any>(`${this.apiUrl}`, spaceDto, { headers })
+    //   .pipe(
+    //     map(response => {
+    //       return {
+    //         status: 201,
+    //         data: response
+    //       };
+    //     }),
+    //     catchError(this.handleError)
+    //   );
+    // }
+    if (token == null) {
+      console.log("not authorized");
       return throwError(() => 'Not authorized');
-    }
-    else
-    {
+    } else {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
       return this.http.post<any>(`${this.apiUrl}`, spaceDto, { headers })
-      .pipe(
-        map(response => {
-          return {
-            status: 201,
-            data: response
-          };
-        }),
-        catchError(this.handleError)
-      );
+        .pipe(
+          map(response => {
+            return {
+              status: 201,
+              data: response
+            };
+          }),
+          catchError(this.handleError)
+        );
     }
+
 
   }
 
