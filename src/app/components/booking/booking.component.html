@@ -1,0 +1,60 @@
+<div class="admin-dashboard-container">
+    <h2 class="admin-dashboard-title">Booking Management</h2>
+
+    <div class="tab-buttons">
+        <button [class.active]="currentTab === 'pending'" (click)="setTab('pending')">
+            <i class="fas fa-clock"></i> Pending
+        </button>
+        <button [class.active]="currentTab === 'confirmed'" (click)="setTab('confirmed')">
+            <i class="fas fa-check-circle"></i> Confirmed
+        </button>
+        <button [class.active]="currentTab === 'cancelled'" (click)="setTab('cancelled')">
+            <i class="fas fa-times-circle"></i> Cancelled
+        </button>
+    </div>
+
+    <div class="booking-list">
+        @for (booking of filteredBookings; track $index) {
+        <div class="booking-card" [class.status-pending]="currentTab === 'pending'"
+            [class.status-confirmed]="currentTab === 'confirmed'" [class.status-cancelled]="currentTab === 'cancelled'">
+            <div class="card-header">
+                <div class="user-info">
+                    <h3>{{ booking.userName }}</h3>
+                    <p class="zone">{{ booking.zoneName }}</p>
+                </div>
+                <div class="status-badge">
+                    {{ booking.statusDisplay }}
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="detail-row">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ booking.startTime }}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-clock"></i>
+                    <span>{{ booking.startTime }}</span>
+                </div>
+                <div class="detail-row">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span class="amount">{{ booking.amount }}</span>
+                </div>
+                <button class="btn-delete" (click)="deleteBooking(booking.id)">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+        }
+
+        <div class="no-results" [hidden]="filteredBookings.length > 0 || isLoading">
+            <i class="far fa-folder-open"></i>
+            <p>No {{currentTab}} bookings found</p>
+        </div>
+
+        <div class="loading-spinner" [hidden]="!isLoading">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading bookings...</p>
+        </div>
+    </div>
+</div>

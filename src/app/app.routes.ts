@@ -12,6 +12,7 @@ import { SpacesComponent } from './components/spaces/spaces.component';
 import { SpaceDetailsComponent } from './pages/space-details/space-details.component';
 import { AboutComponent } from './pages/about/about.component';
 import { UsersComponent } from './components/users/users.component';
+import { BookingListComponent } from './components/booking/booking.component';
 
 export const routes: Routes = [
     {
@@ -56,8 +57,12 @@ export const routes: Routes = [
                 component: GalleryComponent
             },
             {
-                path: "users",
+                path: 'users',
                 component: UsersComponent
+            },
+            {
+                path: 'booking',
+                component: BookingListComponent
             }
         ]
     },
