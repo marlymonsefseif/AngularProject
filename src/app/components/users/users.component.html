@@ -1,5 +1,10 @@
 <div class="admin-dashboard-container">
     <h2 class="admin-dashboard-title">User Management</h2>
+
+    <div *ngIf="isLoading" class="loading-indicator">
+        <i class="fas fa-spinner fa-spin"></i> Loading users...
+    </div>
+
     <div class="table-responsive">
         <table class="admin-table">
             <thead>
