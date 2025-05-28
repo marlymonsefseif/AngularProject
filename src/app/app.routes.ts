@@ -88,8 +88,5 @@ export const routes: Routes = [
         path: 'cancel',
         component: CancelComponent
     },
-    {
-        path: 'admin/profile/:id',
-        component: UserprofileComponent,
-    }
+    
 ];
