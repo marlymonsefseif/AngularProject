@@ -13,7 +13,7 @@
                     <th scope="col">Phone</th>
                     <th scope="col">Email</th>
                     <th scope="col">Membership</th>
-                    <th scope="col">Actions</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +27,6 @@
                         <span class="membership-badge">{{user.membershipName}}</span>
                     </td>
                     <td class="actions-cell">
-                        <button class="btn-show" [routerLink]="['/profile/'+user.id]">
-                            <i class="fa-solid fa-eye"></i>
-                        </button>
                         <button class="btn-delete" (click)="deleteUser(user.id)">
                             <i class="fas fa-trash-alt"></i>
                         </button>

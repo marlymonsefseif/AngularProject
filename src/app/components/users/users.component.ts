@@ -1,12 +1,12 @@
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { IUserData } from '../../models/iuser-data';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-users',
-  imports: [RouterLink, CommonModule],
+  imports: [ CommonModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.css'
 })
@@ -14,7 +14,7 @@ export class UsersComponent implements OnInit {
   users: IUserData[] = [];
   isLoading: boolean = true; 
   
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {
     this.userService.getAllUsers().subscribe({
