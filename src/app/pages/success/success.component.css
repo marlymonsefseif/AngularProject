@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    background: #f0f0f0; 
+}
+
+header {
+    flex-shrink: 0; 
+    width: 100%;
+    background: #e0e0e0; 
+}
+
+main {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-container {
+    text-align: center;
+    background: white;
+    border-radius: 16px;
+    padding: 70px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 90%;
+    margin-top: 40px;
+}
+
+.success-icon {
+    font-size: 4rem;
+    color: #4caf50;
+}
+
+.success-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 20px 0 10px;
+    color: #333;
+}
+
+.success-message {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.home-button {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.home-button:hover {
+    background: #388e3c;
+}

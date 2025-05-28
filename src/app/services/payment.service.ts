@@ -16,12 +16,12 @@ import { API_URL } from './URLservice';
   providedIn: 'root',
 })
 export class PaymentService {
-  //private baseUrl = 'http://localhost:17102/api/Payment'; // عدّلي الرابط حسب الباك الخاص بك
-   private apiUrl = `${API_URL}Payment`;
+  private baseUrl = 'http://localhost:17102/api/Payment'; // عدّلي الرابط حسب الباك الخاص بك
+   //private apiUrl = `${API_URL}Payment`;
  
   constructor(private http: HttpClient) {}
 
   createPaymentIntent(paymentRequest: any) {
-    return this.http.post<any>(`${this.apiUrl}/create-payment-intent`, paymentRequest);
+    return this.http.post<any>(`${this.baseUrl}/create-payment-intent`, paymentRequest);
   }
 }

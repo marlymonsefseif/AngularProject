@@ -85,19 +85,12 @@ export class SpaceDetailsComponent implements OnInit {
             zoneName: this.space.name
           };
           console.log(bookingData)
-          this.bookingService.addBooking(bookingData).subscribe({
-            next: () => {
-              alert('Booking confirmed and saved!');
-            },
-            error: (err:any) => {
-              console.error('Error saving booking:', err);
-              alert('saving booking failed.');
-            }
-          });
+          
       const paymentRequest = {
         amount: this.totalPrice * 100,
         currency: 'usd',
         description: `Booking for ${this.space.name}`,
+        paymentMethodId: "pm_card_visa"
       };
 
       this.paymentService.createPaymentIntent(paymentRequest).subscribe({
