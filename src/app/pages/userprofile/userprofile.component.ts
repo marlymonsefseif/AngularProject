@@ -17,7 +17,7 @@ export class UserprofileComponent implements OnInit {
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.UserId = this.activatedRoute.snapshot.paramMap.get("id");
+    this.UserId = localStorage.getItem("UserId") || localStorage.getItem("AdminId");
     this.userService.getUser(this.UserId).subscribe({
       next: (response) => {
         this.user = response;

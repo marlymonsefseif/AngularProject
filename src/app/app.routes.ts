@@ -28,7 +28,7 @@ export const routes: Routes = [
     },
     {
         path: 'contact',
-        component: ContactComponent 
+        component: ContactComponent
     },
     {
         path: 'login',
@@ -65,7 +65,7 @@ export const routes: Routes = [
             {
                 path: 'booking',
                 component: BookingListComponent
-            }
+            },
         ]
     },
     {
@@ -81,11 +81,15 @@ export const routes: Routes = [
         component: AboutComponent
     },
     {
-    path: 'success',
-    component: SuccessComponent
-  },
-  {
-    path: 'cancel',
-    component: CancelComponent
-  }
+        path: 'success',
+        component: SuccessComponent
+    },
+    {
+        path: 'cancel',
+        component: CancelComponent
+    },
+    {
+        path: 'admin/profile/:id',
+        component: UserprofileComponent,
+    }
 ];

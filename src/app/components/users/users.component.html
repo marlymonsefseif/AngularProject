@@ -27,7 +27,7 @@
                         <span class="membership-badge">{{user.membershipName}}</span>
                     </td>
                     <td class="actions-cell">
-                        <button class="btn-show" routerLink='/profile/{{user.id}}'>
+                        <button class="btn-show" [routerLink]="['/admin/profile/'+user.id]">
                             <i class="fa-solid fa-eye"></i>
                         </button>
                         <button class="btn-delete" (click)="deleteUser(user.id)">
