@@ -6,6 +6,8 @@ import { Space, SpaceTypes } from './../../models/space.model';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BookingService } from '../../services/booking.service';
+import { Booking, Status } from '../../models/booking';
 
 @Component({
   selector: 'app-space-details',
@@ -29,6 +31,7 @@ export class SpaceDetailsComponent implements OnInit {
   constructor(
     private paymentService: PaymentService,
     private spaceService: SpaceService,
+    private bookingService : BookingService,
     private activatedRoute: ActivatedRoute
   ) {}
 
@@ -49,22 +52,50 @@ export class SpaceDetailsComponent implements OnInit {
   }
 
   calculateTotalPrice(): void {
-    if (this.booking.from && this.booking.to && this.space) {
-      const from = new Date(this.booking.from);
-      const to = new Date(this.booking.to);
-      const diffMs = to.getTime() - from.getTime();
-      const hours = diffMs / (1000 * 60 * 60);
+  if (this.booking.from && this.booking.to && this.space) {
+    const [fromHours, fromMinutes, fromSeconds = "0"] = this.booking.from.split(':').map(Number);
+    const [toHours, toMinutes, toSeconds = "0"] = this.booking.to.split(':').map(Number);
 
-      this.totalPrice = hours > 0 ? hours * this.space.pricePerHour : null;
-    }
+    const fromTotalSeconds = fromHours * 3600 + fromMinutes * 60 + Number(fromSeconds);
+    const toTotalSeconds = toHours * 3600 + toMinutes * 60 + Number(toSeconds);
+
+    const diffInSeconds = toTotalSeconds - fromTotalSeconds;
+    const hours = diffInSeconds / 3600;
+
+    this.totalPrice = hours > 0 ? hours * this.space.pricePerHour : null;
+  } else {
+    this.totalPrice = null;
   }
+}
+
 
   async confirmBooking(): Promise<void> {
     this.calculateTotalPrice();
 
     if (this.totalPrice) {
+      const bookingData:Booking = {
+            id: 0,
+            startTime: this.formatTimeOnly(this.booking.from),
+            endTime: this.formatTimeOnly(this.booking.to),
+            amount: this.totalPrice,
+            status: Status.Pending,
+            userId: localStorage.getItem('UserId'),
+            userName: localStorage.getItem('fName'),
+            zoneId: this.id,
+            zoneName: this.space.name
+          };
+          console.log(bookingData)
+          this.bookingService.addBooking(bookingData).subscribe({
+            next: () => {
+              alert('Booking confirmed and saved!');
+            },
+            error: (err:any) => {
+              console.error('Error saving booking:', err);
+              alert('saving booking failed.');
+            }
+          });
       const paymentRequest = {
-        amount: this.totalPrice * 100, 
+        amount: this.totalPrice * 100,
         currency: 'usd',
         description: `Booking for ${this.space.name}`,
       };
@@ -91,4 +122,8 @@ export class SpaceDetailsComponent implements OnInit {
       alert('Please enter valid dates');
     }
   }
+  formatTimeOnly(timeString: string): string {
+  const [hours, minutes] = timeString.split(':');
+  return `${hours}:${minutes}:00`;
+}
 }
