@@ -1,6 +1,6 @@
 import { loadStripe } from '@stripe/stripe-js';
 import { PaymentService } from '../../services/payment.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SpaceService } from '../../services/space.service';
 import { Space, SpaceTypes } from './../../models/space.model';
 import { Component, OnInit } from '@angular/core';
@@ -32,7 +32,8 @@ export class SpaceDetailsComponent implements OnInit {
     private paymentService: PaymentService,
     private spaceService: SpaceService,
     private bookingService : BookingService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router : Router
   ) {}
 
   ngOnInit(): void {

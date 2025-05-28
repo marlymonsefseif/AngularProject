@@ -30,7 +30,7 @@
             <div class="card-body">
                 <div class="detail-row">
                     <i class="fas fa-calendar-alt"></i>
-                    <span>{{ booking.startTime }}</span>
+                    <span>{{ booking.date }}</span>
                 </div>
                 <div class="detail-row">
                     <i class="fas fa-clock"></i>
@@ -38,11 +38,14 @@
                 </div>
                 <div class="detail-row">
                     <i class="fas fa-money-bill-wave"></i>
-                    <span class="amount">{{ booking.amount }}</span>
+                    <span class="amount">{{ booking.amount }}$</span>
                 </div>
+                @if(currentTab == "pending") {
                 <button class="btn-delete" (click)="deleteBooking(booking.id)">
                     <i class="fas fa-trash-alt"></i>
                 </button>
+                }
+
             </div>
         </div>
         }
