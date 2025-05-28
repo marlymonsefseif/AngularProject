@@ -14,25 +14,22 @@ export class GalleryService {
 
   uploadImage(formData: FormData): Observable<any> {
     const token = localStorage.getItem("AdminAuthToken");
-    if(token!= null)
-    {
-      console.log("not authorize");
+    if (token == null) {
+      console.log("not authorized");
       return throwError(() => 'Not authorized');
     }
-    else
-    {
-      const headers = new HttpHeaders({
-        'Authorization': `Bearer ${token}`
-      });
-      return this.http.post(this.apiUrl, formData,{headers});
-
-    }
-
+    
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.post(this.apiUrl, formData, {headers});
   }
-  getAll(): Observable<Gallery[]>{
+
+  getAll(): Observable<Gallery[]> {
     return this.http.get<Gallery[]>(this.apiUrl);
   }
-  getBySpace(spaceId:number): Observable<Gallery>{
+
+  getBySpace(spaceId: number): Observable<Gallery> {
     return this.http.get<Gallery>(`${this.apiUrl}/space/${spaceId}`);
   }
 }

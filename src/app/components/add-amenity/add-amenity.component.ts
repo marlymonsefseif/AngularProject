@@ -22,10 +22,18 @@ export class AddAmenityComponent implements OnInit {
 
   constructor(
     private amenityService: AmenityService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    // Check if user is admin
+    const adminToken = localStorage.getItem('AdminAuthToken');
+    if (!adminToken) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.amenityForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(1)]]
     });
@@ -72,7 +80,11 @@ export class AddAmenityComponent implements OnInit {
         }, 5000);
       },
       error: (error: HttpErrorResponse) => {
-        this.errorMessage = error.error || 'An error occurred while adding the amenity';
+        if (error.error === 'Not authorized') {
+          this.router.navigate(['/login']);
+        } else {
+          this.errorMessage = error.error || 'An error occurred while adding the amenity';
+        }
         this.successMessage = '';
         this.showSuccessAlert = false;
         this.isSubmitting = false;
