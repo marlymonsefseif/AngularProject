@@ -12,8 +12,8 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class UserprofileComponent implements OnInit {
   UserId: any = 0;
   user: any = {};
-  token: any = localStorage.getItem("UserAuthToken");
 
+  
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
