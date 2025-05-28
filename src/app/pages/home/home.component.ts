@@ -4,6 +4,9 @@ import { UserService } from '../../services/user.service';
 import { MemberShipServiceService } from '../../services/member-ship-service.service';
 import { AmenityService } from '../../services/amenity.service';
 import { StaticServiceService } from '../../services/static-service.service';
+import { PaymentService } from '../../services/payment.service';
+import { loadStripe } from '@stripe/stripe-js';
+
 
 @Component({
   selector: 'app-home',
@@ -21,7 +24,12 @@ export class HomeComponent {
   constructor(private userService:UserService,
               private router:Router,
               private spaceService:StaticServiceService,
-              private membership:MemberShipServiceService){}
+              private membership:MemberShipServiceService,
+                private paymentService: PaymentService){}
+
+  private stripePromise = loadStripe('pk_test_51RHudrC7seSHrVaTNuH78nuUGxR8XgsQrkby0EQcpZVsFr1dPiQ9Ixu6LQIYoOlaJltb5hyl15K8fR2K8K8SHyJn00EQueJV0S');
+
+              
 
   
   ngOnInit(): void {
@@ -56,4 +64,36 @@ export class HomeComponent {
       alert("No token found in localStorage");
     }
   }
-}
+
+
+
+    async confirmMemberShip(price:number,name:string): Promise<void> {  
+        const paymentRequest = {
+          amount: price * 100,
+          currency: 'usd',
+          description: `Booking for ${name}`,
+          paymentMethodId: "pm_card_visa"
+        };
+  
+        this.paymentService.createPaymentIntent(paymentRequest).subscribe({
+          next: async (response) => {
+            const stripe = await this.stripePromise;
+            if (stripe) {
+              const result = await stripe.redirectToCheckout({
+                sessionId: response.clientSecret,
+              });
+  
+             if (result.error) {
+              console.error(result.error.message);
+            }
+          }
+        },
+        error: (error) => {
+          console.error('Payment failed', error);
+          alert('Payment failed. Please try again.');
+        },
+      });
+    } 
+      
+    }
+  

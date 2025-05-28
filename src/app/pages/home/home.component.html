@@ -228,9 +228,9 @@
                 }
               </ul>
               
-              <a href="#" class="btn mt-auto" 
+              <a  class="btn mt-auto" 
                  [class.btn-primary]="member.featured"
-                 [class.btn-outline-dark]="!member.featured" style="background-color: #00bfff; border: none; color: white;">Enquire now</a>
+                 [class.btn-outline-dark]="!member.featured" (click)="confirmMemberShip(member.price,member.name)" style="background-color: #00bfff; border: none; color: white;">Enquire now</a>
             </div>
           </div>
         </div>
