@@ -1,3 +1,4 @@
+import { Membership } from './../../models/membership';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { UserService } from '../../services/user.service';
@@ -55,5 +56,10 @@ export class HomeComponent {
     } else {
       alert("No token found in localStorage");
     }
+  }
+
+ 
+  membershippp(price:number){
+     console.log('Selected price:', price);
   }
 }
