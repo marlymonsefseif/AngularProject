@@ -26,7 +26,7 @@ export class SpaceDetailsComponent implements OnInit {
     persons: 1,
   };
 
-  private stripePromise = loadStripe('pk_test_51RHudrC7seSHrVaTNuH78nuUGxR8XgsQrkby0EQcpZVsFr1dPiQ9Ixu6LQIYoOlaJltb5hyl15K8fR2K8K8SHyJn00EQueJV0S');
+  private stripePromise = loadStripe('cs_test_a17OiDyrZsAyIpufiuvwioj7mxZTeLKssbPlPGsS6cLZLXsLinRS8yeyZr');
 
   constructor(
     private paymentService: PaymentService,

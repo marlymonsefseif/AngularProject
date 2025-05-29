@@ -66,12 +66,10 @@ export class HomeComponent {
     }
   }
 
-<<<<<<< HEAD
  
   membershippp(price:number){
      console.log('Selected price:', price);
   }
-=======
 
 
   async confirmMemberShip(price: number, name: string): Promise<void> {
@@ -107,6 +105,5 @@ export class HomeComponent {
     });
   }
 
->>>>>>> 742bd0fd3fb79cdb7f477e47943afbfe8e2ff810
 }
 
