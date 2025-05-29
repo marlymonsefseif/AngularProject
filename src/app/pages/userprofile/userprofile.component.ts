@@ -12,12 +12,12 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 export class UserprofileComponent implements OnInit {
   UserId: any = 0;
   user: any = {};
-  token: any = localStorage.getItem("UserAuthToken");
-
+  
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
-    this.UserId = this.activatedRoute.snapshot.paramMap.get("id");
+    this.UserId = localStorage.getItem("UserId") || localStorage.getItem("AdminId");
+
     this.userService.getUser(this.UserId).subscribe({
       next: (response) => {
         this.user = response;
@@ -78,11 +78,7 @@ export class UserprofileComponent implements OnInit {
       console.log(this.userData.value);
       this.userService.editUser(this.UserId, this.userData.value).subscribe({
         next: () => {
-          this.userService.getUser(this.UserId).subscribe({
-            next: (response) => {
-              this.user = response;
-            }
-          });
+          this.user = this.userData.value;
         }
       });
     }

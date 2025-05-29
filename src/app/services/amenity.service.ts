@@ -20,17 +20,15 @@ export class AmenityService {
   }
   addAmenity(name: string): Observable<any> {
     const token = localStorage.getItem("AdminAuthToken");
-    if(token!= null)
-    {
-      console.log("not authorize");
+    if(token == null) {
+      console.log("not authorized");
       return throwError(() => 'Not authorized');
     }
-    else
-    {
+    else {
       const headers = new HttpHeaders({
         'Authorization': `Bearer ${token}`
       });
-      return this.http.post<any>(`${this.apiUrl}?name=${encodeURIComponent(name)}`, {headers})
+      return this.http.post<any>(`${this.apiUrl}?name=${encodeURIComponent(name)}`, {}, {headers})
         .pipe(
           map(response => {
             return {

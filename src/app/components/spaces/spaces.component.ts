@@ -17,21 +17,34 @@ import { RouterLink } from '@angular/router';
 export class SpacesComponent implements OnInit{
   spaces!: Space[];
   SpaceType = SpaceTypes;
-  photosMap: { [spaceId: number]: string } = {};
+  photos: { id:number, url:string }[] = [];
   selectedType: string | null = null;
   spaceTypes = Object.keys(SpaceTypes).filter(key => isNaN(Number(key)));
+  image:string[] = [];
 
   constructor(private service: SpaceService,private galleryService: GalleryService){}
   ngOnInit(): void{
     this.service.getSpaces().subscribe((response)=>{
       this.spaces = response;
-      this.galleryService.getAll().subscribe((response) => {
-      response.forEach(photo => {
-        if (!this.photosMap[photo.spaceId]) {
-          this.photosMap[photo.spaceId] = photo.imageUrl;
+      this.spaces.forEach(space=>{
+        console.log(space);
+        if (space.galleries?.[0]) {
+          const baseUrl = "http://localhost:17102/";
+          const currentUrl = space.galleries[0].imageUrl;
+          space.galleries[0].imageUrl = baseUrl + currentUrl;
+          console.log(space.galleries[0].imageUrl);
         }
       });
-    });
+      // this.galleryService.getAll().subscribe((response) => {
+      // response.forEach(photo => {
+      //   if (!this.photos[photo.spaceId]) {
+      //     //this.photos[photo.spaceId] = {id:photo.spaceId, url: 'http://localhost:17102/'+photo.imageUrl};
+      //     this.image.push('http://localhost:17102/'+photo.imageUrl);
+      //     console.log(this.photos[photo.spaceId]);
+      //   }
+      // });
+     
+    // });
     });
   }
 

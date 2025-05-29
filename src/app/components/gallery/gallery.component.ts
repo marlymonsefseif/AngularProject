@@ -6,6 +6,7 @@ import { SpaceService } from '../../services/space.service';
 import { GalleryDTO } from '../../models/gallery.model';
 import { Space } from '../../models/space.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-gallery',
@@ -28,10 +29,18 @@ export class GalleryComponent implements OnInit {
   constructor(
     private galleryService: GalleryService,
     private spaceService: SpaceService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
+    // Check if user is admin
+    const adminToken = localStorage.getItem('AdminAuthToken');
+    if (!adminToken) {
+      this.router.navigate(['/login']);
+      return;
+    }
+
     this.initializeForm();
     this.loadSpaces();
   }
@@ -106,7 +115,9 @@ export class GalleryComponent implements OnInit {
       },
       error: (error: HttpErrorResponse) => {
         console.error('Error uploading image:', error);
-        if (error.status === 0) {
+        if (error.error === 'Not authorized') {
+          this.router.navigate(['/login']);
+        } else if (error.status === 0) {
           this.errorMessage = 'Unable to connect to the server. Please check if the backend is running.';
         } else if (error.status === 404) {
           this.errorMessage = 'The gallery endpoint was not found. Please check the API configuration.';

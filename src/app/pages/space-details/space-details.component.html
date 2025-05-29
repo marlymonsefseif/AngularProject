@@ -5,7 +5,7 @@
     <div class="col-md-6">
       <div class="img-container shadow rounded overflow-hidden animate__animated animate__fadeInLeft">
 
-        <img [src]="space.galleries?.[0]?.imageUrl || 'po.jpg'" class="img-fluid w-100" alt="space image">
+        <img [src]="space.galleries?.[0]?.imageUrl" class="img-fluid w-100" alt="space image">
 
       </div>
     </div>
@@ -61,12 +61,12 @@
         <form>
           <div class="mb-3">
             <label class="form-label">From</label>
-            <input type="datetime-local" class="form-control" [(ngModel)]="booking.from" name="from"
+            <input type="time" class="form-control" [(ngModel)]="booking.from" name="from"
               (change)="calculateTotalPrice()">
           </div>
           <div class="mb-3">
             <label class="form-label">To</label>
-            <input type="datetime-local" class="form-control" [(ngModel)]="booking.to" name="to"
+            <input type="time" class="form-control" [(ngModel)]="booking.to" name="to"
               (change)="calculateTotalPrice()">
           </div>
           <div class="mb-3">
