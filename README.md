@@ -25,6 +25,9 @@ Makank Workspace is a web-based platform designed to help users find and book sh
 
 - **Reviews and Ratings:**
   - Users can rate and review workspaces after use.
+    
+- **payment integration:**
+  - Add online payment integration for booking.    
 
 ## Technologies Used
 
@@ -41,6 +44,4 @@ Makank Workspace is a web-based platform designed to help users find and book sh
 - **Frontend:** Angular components for user interface and interaction.
 - **Database:** Managed using Entity Framework Core and SQL Server.
 
-## Future Enhancements
 
-- Add online payment integration for booking  
